@@ -2,7 +2,7 @@
 	require_once "./config.php";
 
 	try {
-		$accessToken = $helper->getAccessToken("https://facebookloginapp.herokuapp.com/fb-callback.php");
+		$accessToken = $helper->getAccessToken("https://signmeupapp.herokuapp.com/fb-callback.php");
 	} catch (\Facebook\Exceptions\FacebookResponseException $e) {
 		echo "Response Exception: " . $e->getMessage();
 		exit();

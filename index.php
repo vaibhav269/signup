@@ -5,7 +5,7 @@
 		header('Location: ./indexed.php');
 		exit();
 	}	
-	$redirectURL = "https://facebookloginapp.herokuapp.com/fb-callback.php";
+	$redirectURL = "https://signmeupapp.herokuapp.com/fb-callback.php";
 	$permissions = ['email'];
 	$loginURL = $helper->getLoginUrl($redirectURL, $permissions);
 ?>

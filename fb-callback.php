@@ -23,9 +23,25 @@
 	$response = $FB->get("/me?fields=id, first_name, last_name, email, picture.type(large)", $accessToken);
 	$userData = $response->getGraphNode()->asArray();
 	$email = $userData['email'];
-	$name = $userData['first_name'].$userData['last_name'];
-	$_SESSION['email'] = $userData['email'];
-	$_SESSION['name'] = $name;
+	$name = $userData['first_name']." ".$userData['last_name'];
+	$bool=false;
+	$dbc=mysqli_connect('localhost','vaibhav','tester','signup')  or die("Could not conect");
+	$query="SELECT email FROM signup WHERE email='$email'";
+	$result=mysqli_query($dbc,$query);
+	$ifExist = mysqli_num_rows($result);
+	if(!$ifExist){
+		 if(mysqli_query($dbc,"INSERT INTO signup(name,email) VALUES('$name','$email')") or die("could not query"))
+		  {
+			   $bool = true;
+				 echo "signup succesful";
+		  }
+	}
+	if($ifExist || $bool){
+		 $_SESSION['email'] = $email;
+		 $_SESSION['name'] = $name;
+		 echo "logged in succesfully with facebook";
+	}	
+	
 	header('Location: ./indexed.php');
 	exit();
 ?>

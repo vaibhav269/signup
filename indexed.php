@@ -24,6 +24,9 @@
 				<?php echo $_SESSION['email'] ?>
 			</div>
 			<div class="col">
+				<?php echo $_SESSION['name'] ?>
+			</div
+			<div class="col">
 				<button class="btn btn-primary" onclick="logout()">Logout</button>
 			</div>		
 		</div>

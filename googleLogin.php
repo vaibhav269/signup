@@ -22,6 +22,7 @@
                     }
                     if($ifExist || $bool){
                          $_SESSION['email'] = $email;
+                         $_SESSION['name'] = $name;
                          echo "logged in succesfully with google";
                     }
      } else {

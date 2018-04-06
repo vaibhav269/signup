@@ -22,8 +22,10 @@
 
 	$response = $FB->get("/me?fields=id, first_name, last_name, email, picture.type(large)", $accessToken);
 	$userData = $response->getGraphNode()->asArray();
+	$email = $userData['email'];
+	$name = $userData['first_name'].$userData['last_name'];
 	$_SESSION['email'] = $userData['email'];
-	$_SESSION['access_token'] = (string) $accessToken;
+	$_SESSION['name'] = $name;
 	header('Location: ./indexed.php');
 	exit();
 ?>

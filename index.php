@@ -19,18 +19,6 @@
           <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
           <script src="./scripts/jquery.min.js"></script>
           <script src="./bootstrap/js/bootstrap.min.js"></script>
-          <script>
-               function onSignIn(googleUser) {
-                        var id_token = googleUser.getAuthResponse().id_token;
-                        $.post("data.php",
-                            {
-                                id_token:id_token
-                            },
-                            function(data, status){
-                                console.log(data);
-                            });
-                        }
-          </script>
      </head>
 
      <body>
@@ -165,12 +153,14 @@
           <script>
                     function onSuccess(googleUser) {
                          var id_token = googleUser.getAuthResponse().id_token;
-                            $.post("data.php",
+                            $.post("googleLogin.php",  
                                 {
                                     id_token:id_token
                                 },
                                 function(data, status){
-                                    alert(data);
+                                  if(status==="success"){
+                                    window.location.href = "./indexed.php";
+                                  }                                    
                                 });
                     }
                     function onFailure(error) {
@@ -179,7 +169,7 @@
                     function renderButton() {
                     let wid= $("#my-signin2").width();
                       gapi.signin2.render('my-signin2', {
-                        'scope': 'profile email',
+                       'scope': 'profile email',
                        'width': wid,
                        'height': 50,
                        'longtitle': true,
